@@ -146,7 +146,7 @@ NOTES:
  *   Rating: 1
  */
 int signMask(void) {
-  return 1<<32;
+  return 1<<31;
 }
 
 // P2
@@ -170,7 +170,7 @@ int bitXor(int x, int y) {
  *   Rating: 3
  */
 int negativePart(int x){
-  int s=x>>31
+  int s=x>>31;
   return (~x+1)&s;
 }
 
@@ -474,7 +474,6 @@ unsigned floatScaleThreeHalves(unsigned uf) {
         return sign | 0x7f800000u;
 
     return sign | (exp << 23) | (q & 0x007fffffu);
-}
 }
 
 // P16
