@@ -388,31 +388,8 @@ sumXYZ = sumXY + z;
 ### 6.1 操作数与合法性检查
 
 `./check_ops.py bits.c` 的结果如下：
-
-| 编号 | 函数 | 实际操作数 | 上限 | 结果 |
-|---:|---|---:|---:|---|
-| P1 | `signMask` | 1 | 2 | 通过 |
-| P2 | `bitXor` | 8 | 8 | 通过 |
-| P3 | `negativePart` | 4 | 6 | 通过 |
-| P4 | `copyByteWithin` | 9 | 12 | 通过 |
-| P5 | `logicalShift` | 6 | 20 | 通过 |
-| P6 | `swapNibblePairs` | 9 | 18 | 通过 |
-| P7 | `secondLowestZeroBit` | 7 | 8 | 通过 |
-| P8 | `oddParity` | 12 | 56 | 通过 |
-| P9 | `rotateRightBits` | 13 | 16 | 通过 |
-| P10 | `roundEvenPow2` | 20 | 24 | 通过 |
-| P11 | `midpointTowardFirst` | 25 | 32 | 通过 |
-| P12 | `isBetweenEitherOrder` | 43 | 48 | 通过 |
-| P13 | `mul5Sat` | 23 | 30 | 通过 |
-| P14 | `classifyAdd3` | 19 | 52 | 通过 |
-| P15 | `floatScaleThreeHalves` | 41 | 60 | 通过 |
-| P16 | `floatRoundEven` | 27 | 65 | 通过 |
-| P17 | `float_i2f` | 33 | 40 | 通过 |
-| P18 | `bitCount` | 28 | 40 | 通过 |
-| P19 | `bitReverse` | 34 | 34 | 通过 |
-
+![[Pasted image 20260929193730.png]]
 检查器最终输出：
-
 ```text
 All 19 functions passed operator checks.
 operator check passed
@@ -421,31 +398,8 @@ operator check passed
 ### 6.2 `btest` 正确性测试
 
 正式测试结果为：
-
-| 编号 | 函数 | 得分 | 错误数 |
-|---:|---|---:|---:|
-| P1 | `signMask` | 1/1 | 0 |
-| P2 | `bitXor` | 2/2 | 0 |
-| P3 | `negativePart` | 3/3 | 0 |
-| P4 | `copyByteWithin` | 4/4 | 0 |
-| P5 | `logicalShift` | 4/4 | 0 |
-| P6 | `swapNibblePairs` | 4/4 | 0 |
-| P7 | `secondLowestZeroBit` | 4/4 | 0 |
-| P8 | `oddParity` | 5/5 | 0 |
-| P9 | `rotateRightBits` | 5/5 | 0 |
-| P10 | `roundEvenPow2` | 5/5 | 0 |
-| P11 | `midpointTowardFirst` | 5/5 | 0 |
-| P12 | `isBetweenEitherOrder` | 7/7 | 0 |
-| P13 | `mul5Sat` | 7/7 | 0 |
-| P14 | `classifyAdd3` | 7/7 | 0 |
-| P15 | `floatScaleThreeHalves` | 7/7 | 0 |
-| P16 | `floatRoundEven` | 10/10 | 0 |
-| P17 | `float_i2f` | 10/10 | 0 |
-| P18 | `bitCount` | 10/10 | 0 |
-| P19 | `bitReverse` | 10/10 | 0 |
-
+![[Pasted image 20260929193206.png]]
 最终输出：
-
 ```text
 Total points: 110/110
 all checks passed: 110/110
@@ -477,7 +431,7 @@ P10、P15、P16、P17 表面上处理不同数据，实质上都可以归纳为�
 
 ## 8. 实验总结
 
-完成 Data Lab 后，我对“整数和浮点数都是固定位向量”有了更具体的认识。高级语言中的取负、比较、乘法、循环移位、舍入和类型转换，最终都可以分解为位选择、移位、加法以及有限状态分类。
+完成 Data Lab 后，我对“整数和浮点数都是固定位向量”有了更具体的认识。高级语言中的取负、比较、乘法、循环移位、舍入和类型转换，最终都可以分解为位选择、移位、加法以及有限状态分类，这恰恰回应了课程题目——计算机系统基础介绍。
 
 实验中最重要的收获有三点：第一，处理边界情况必须从表示模型出发，尤其要警惕 `INT_MIN`、有符号溢出和移位量边界；第二，正确的位级算法往往依赖可证明的代数不变量，而不是针对测试样例打补丁；第三，IEEE 754 的复杂性主要集中在分类和舍入，只要明确隐含位、阶码变化及最近偶数规则，浮点运算也可以被系统地转化为整数位运算。
 
